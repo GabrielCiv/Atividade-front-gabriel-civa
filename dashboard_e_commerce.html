@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard E-commerce</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+    <div class="max-w-7xl mx-auto space-y-8">
+        
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center pb-6 border-b border-slate-800 gap-4">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                    Painel de Vendas E-Commerce
+                </h1>
+                <p class="text-slate-400 text-sm mt-1">Visão geral do desempenho semanal da loja</p>
+            </div>
+            <div class="bg-slate-800 px-4 py-2 rounded-xl border border-slate-700 text-xs font-medium text-slate-300">
+                Status: <span class="text-emerald-400 font-semibold">● Atualizado</span>
+            </div>
+        </header>
+
+        <!-- KPI Cards -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl shadow-xl hover:border-indigo-500/50 transition duration-300">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400 text-sm font-medium">Faturamento Total</span>
+                    <div class="p-2 bg-indigo-500/10 rounded-lg text-indigo-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="text-3xl font-bold text-white">R$ 4.850,00</p>
+                    <span class="text-emerald-400 text-xs font-medium inline-flex items-center mt-2">
+                        ↑ +12% em relação à semana passada
+                    </span>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl shadow-xl hover:border-purple-500/50 transition duration-300">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400 text-sm font-medium">Total de Pedidos</span>
+                    <div class="p-2 bg-purple-500/10 rounded-lg text-purple-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="text-3xl font-bold text-white">25</p>
+                    <span class="text-emerald-400 text-xs font-medium inline-flex items-center mt-2">
+                        ↑ +5 novos pedidos hoje
+                    </span>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl shadow-xl hover:border-cyan-500/50 transition duration-300 sm:col-span-2 lg:col-span-1">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400 text-sm font-medium">Ticket Médio</span>
+                    <div class="p-2 bg-cyan-500/10 rounded-lg text-cyan-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="text-3xl font-bold text-white">R$ 194,00</p>
+                    <span class="text-slate-400 text-xs font-medium inline-flex items-center mt-2">
+                        Calculado por Faturamento / Pedidos
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Gráfico de Linhas - Evolução Diária -->
+            <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl shadow-xl lg:col-span-2">
+                <h2 class="text-lg font-semibold text-slate-200 mb-4">Faturamento Diário (Últimos 7 Dias)</h2>
+                <div class="relative h-64 md:h-80 w-full">
+                    <canvas id="faturamentoChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Gráfico de Pizza - Métodos de Pagamento -->
+            <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl shadow-xl">
+                <h2 class="text-lg font-semibold text-slate-200 mb-4">Métodos de Pagamento</h2>
+                <div class="relative h-64 md:h-80 w-full flex items-center justify-center">
+                    <canvas id="pagamentoChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Gráfico de Barras - Vendas por Categoria -->
+            <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl shadow-xl lg:col-span-3">
+                <h2 class="text-lg font-semibold text-slate-200 mb-4">Vendas por Categoria (Unidades)</h2>
+                <div class="relative h-64 md:h-72 w-full">
+                    <canvas id="categoriasChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script dos Gráficos -->
+    <script>
+        // Configurações globais do Chart.js para temas escuros
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.font.family = 'Inter';
+
+        // 1. Gráfico de Linha: Faturamento Diário
+        const ctxFaturamento = document.getElementById('faturamentoChart').getContext('2d');
+        const gradientFaturamento = ctxFaturamento.createLinearGradient(0, 0, 0, 300);
+        gradientFaturamento.addColorStop(0, 'rgba(99, 102, 241, 0.4)');
+        gradientFaturamento.addColorStop(1, 'rgba(99, 102, 241, 0.0)');
+
+        new Chart(ctxFaturamento, {
+            type: 'line',
+            data: {
+                labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                datasets: [{
+                    label: 'Faturamento (R$)',
+                    data: [600, 850, 700, 950, 1100, 400, 250],
+                    borderColor: '#6366f1',
+                    borderWidth: 3,
+                    backgroundColor: gradientFaturamento,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#818cf8',
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => ` R$ ${context.parsed.y.toLocaleString('pt-BR')},00`
+                        }
+                    }
+                },
+                scales: {
+                    x: { grid: { color: '#334155' } },
+                    y: { 
+                        grid: { color: '#334155' },
+                        ticks: {
+                            callback: (value) => 'R$ ' + value
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. Gráfico de Pizza: Métodos de Pagamento
+        const ctxPagamento = document.getElementById('pagamentoChart').getContext('2d');
+        new Chart(ctxPagamento, {
+            type: 'pie',
+            data: {
+                labels: ['Cartão de Crédito', 'PIX', 'Boleto'],
+                datasets: [{
+                    data: [50, 35, 15],
+                    backgroundColor: ['#6366f1', '#a855f7', '#06b6d4'],
+                    borderColor: '#1e293b',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 15 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => ` ${context.label}: ${context.parsed}%`
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. Gráfico de Barras: Vendas por Categoria
+        const ctxCategorias = document.getElementById('categoriasChart').getContext('2d');
+        new Chart(ctxCategorias, {
+            type: 'bar',
+            data: {
+                labels: ['Eletrônicos', 'Roupas', 'Casa', 'Livros'],
+                datasets: [{
+                    label: 'Quantidade Vendida',
+                    data: [10, 8, 4, 3],
+                    backgroundColor: '#a855f7',
+                    borderRadius: 8,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { 
+                        grid: { color: '#334155' },
+                        beginAtZero: true,
+                        ticks: { stepSize: 2 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
